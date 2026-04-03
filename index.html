@@ -27,6 +27,7 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
+  /* HERO */
   .hero {
     background: linear-gradient(135deg, var(--ink) 0%, var(--ink-light) 50%, var(--red-dark) 100%);
     color: var(--white);
@@ -37,15 +38,10 @@
   }
   .hero::before {
     content: '上海';
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 220px;
-    font-weight: 900;
-    opacity: 0.04;
-    letter-spacing: 40px;
-    white-space: nowrap;
+    font-size: 220px; font-weight: 900; opacity: 0.04;
+    letter-spacing: 40px; white-space: nowrap;
   }
   .hero-sub { font-size: 11px; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; margin-bottom: 8px; letter-spacing: -1px; }
@@ -54,19 +50,23 @@
   .hero-divider { width: 40px; height: 2px; background: var(--gold); margin: 16px auto; }
   .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
 
-  /* PREP */
-  .prep-section { margin: 28px 0 8px; }
-  .prep-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 0 4px; }
-  .prep-icon {
-    width: 48px; height: 48px;
-    background: linear-gradient(135deg, var(--gold), #E8C06A);
-    border-radius: 14px;
+  /* SECTION HEADER (reusable) */
+  .sec-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 0 4px; }
+  .sec-icon {
+    width: 48px; height: 48px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
     font-size: 22px; flex-shrink: 0;
-    box-shadow: 0 4px 16px rgba(212,168,83,0.3);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   }
-  .prep-title { font-size: 18px; font-weight: 700; }
-  .prep-subtitle { font-size: 12px; color: var(--gray); }
+  .sec-icon.gold { background: linear-gradient(135deg, var(--gold), #E8C06A); }
+  .sec-icon.blue { background: linear-gradient(135deg, #42A5F5, #1E88E5); }
+  .sec-icon.green { background: linear-gradient(135deg, #66BB6A, #43A047); }
+  .sec-icon.pink { background: linear-gradient(135deg, #EF5350, #C62828); }
+  .sec-title { font-size: 18px; font-weight: 700; }
+  .sec-subtitle { font-size: 12px; color: var(--gray); }
+
+  /* PREP */
+  .prep-section { margin: 28px 0 8px; }
   .prep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
   @media (max-width: 520px) { .prep-grid { grid-template-columns: 1fr; } }
   .prep-card { background: var(--white); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow); }
@@ -76,18 +76,70 @@
   .prep-check { width: 16px; height: 16px; border: 2px solid #ccc; border-radius: 4px; flex-shrink: 0; margin-top: 1px; cursor: pointer; transition: all 0.2s; }
   .prep-check:hover { border-color: var(--gold); }
   .prep-item strong { color: var(--ink); font-weight: 600; }
-  .prep-note {
+  .note-box {
+    border-left: 3px solid var(--gold); border-radius: 0 12px 12px 0;
+    padding: 12px 16px; margin-top: 10px; font-size: 12px; color: #5D4037;
     background: linear-gradient(135deg, #FFF8E1, #FFFDE7);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 12px 12px 0;
-    padding: 12px 16px; margin-top: 10px;
-    font-size: 12px; color: #5D4037;
   }
-  .prep-note strong { color: #E65100; }
+  .note-box strong { color: #E65100; }
+  .note-box.blue-note {
+    border-left-color: #42A5F5;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    color: #1A237E;
+  }
+  .note-box.blue-note strong { color: #1565C0; }
+
+  /* BUDGET */
+  .budget-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  @media (max-width: 520px) { .budget-grid { grid-template-columns: 1fr 1fr; } }
+  .budget-item {
+    background: var(--white); border-radius: 12px; padding: 12px 14px;
+    box-shadow: var(--shadow); text-align: center;
+  }
+  .budget-emoji { font-size: 20px; margin-bottom: 4px; }
+  .budget-label { font-size: 11px; color: var(--gray); font-weight: 500; }
+  .budget-price { font-size: 14px; font-weight: 800; color: var(--red); margin-top: 2px; }
+  .budget-sub { font-size: 10px; color: var(--gray); }
+
+  /* CHEATSHEET */
+  .cheat-section { margin: 24px 0; }
+  .cheat-table {
+    width: 100%; background: var(--white); border-radius: 14px;
+    box-shadow: var(--shadow); overflow: hidden; margin-bottom: 10px;
+  }
+  .cheat-row {
+    display: flex; align-items: center; padding: 10px 16px;
+    font-size: 12px; border-bottom: 1px solid #f0ebe0;
+    gap: 8px;
+  }
+  .cheat-row:last-child { border-bottom: none; }
+  .cheat-row:hover { background: #FFFDF5; }
+  .cheat-ko { font-weight: 600; color: var(--ink); min-width: 100px; flex-shrink: 0; }
+  .cheat-zh { font-weight: 700; color: var(--red-dark); flex: 1; font-size: 13px; }
+  .cheat-copy {
+    background: var(--cream); border: 1px solid #e0d8c8; border-radius: 6px;
+    padding: 3px 8px; font-size: 10px; cursor: pointer; color: var(--ink);
+    font-weight: 600; transition: all 0.15s; white-space: nowrap;
+  }
+  .cheat-copy:hover { background: var(--gold-light); }
+  .cheat-copy.copied { background: #C8E6C9; border-color: #81C784; color: #2E7D32; }
+
+  /* EMERGENCY */
+  .emerg-section { margin: 24px 0; }
+  .emerg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 520px) { .emerg-grid { grid-template-columns: 1fr; } }
+  .emerg-card {
+    background: var(--white); border-radius: 14px; padding: 14px 16px;
+    box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px;
+  }
+  .emerg-icon { font-size: 24px; flex-shrink: 0; }
+  .emerg-label { font-size: 11px; color: var(--gray); }
+  .emerg-value { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .emerg-value a { color: var(--red); text-decoration: none; }
 
   /* DAY */
   .day-section { margin: 32px 0; }
-  .day-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding: 0 4px; }
+  .day-header { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; padding: 0 4px; }
   .day-badge {
     width: 52px; height: 52px;
     background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
@@ -100,6 +152,13 @@
   .day-badge .day-label { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; margin-top: 2px; }
   .day-title { font-size: 18px; font-weight: 700; }
   .day-subtitle { font-size: 12px; color: var(--gray); }
+  .day-hotel {
+    margin: 6px 0 16px 4px; padding: 6px 12px;
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    border-radius: 8px; font-size: 11px; font-weight: 600;
+    color: #4527A0; display: inline-block;
+  }
+  .day-hotel::before { content: '🏨 '; }
 
   /* TIMELINE */
   .timeline { position: relative; padding-left: 28px; }
@@ -126,12 +185,17 @@
     font-size: 18px; flex-shrink: 0; background: var(--cream);
   }
   .card-info { flex: 1; min-width: 0; }
+  .card-time {
+    font-size: 10px; font-weight: 700; color: var(--red);
+    background: #FFF0F0; padding: 2px 7px; border-radius: 4px;
+    display: inline-block; margin-bottom: 4px; letter-spacing: 0.5px;
+  }
   .card-name { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .card-name-en { font-size: 11px; color: var(--gray); font-weight: 400; }
   .card-desc { font-size: 12px; color: var(--gray); margin-top: 4px; line-height: 1.5; }
   .card-desc strong { color: var(--ink); font-weight: 600; }
 
-  .map-link-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  .map-link-group { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
   .map-link {
     display: inline-flex; align-items: center; gap: 4px;
     font-size: 10px; font-weight: 600; padding: 3px 8px;
@@ -159,6 +223,7 @@
   .tag-tip { background: #FFF8E1; color: #F57F17; }
   .tag-night { background: #1A1A2E; color: var(--gold); }
   .tag-relax { background: #E8F5E9; color: #2E7D32; }
+  .tag-hotel { background: #EDE7F6; color: #4527A0; }
 
   .tip-box {
     background: linear-gradient(135deg, #FFF8E1, #FFFDE7);
@@ -179,22 +244,21 @@
 </head>
 <body>
 
+<!-- Hero -->
 <div class="hero">
   <div class="hero-sub">Travel Itinerary</div>
   <h1><span>Shanghai</span> 상하이</h1>
   <div class="hero-divider"></div>
-  <div class="hero-desc">3박 4일 · 와이탄 야경 · 디즈니랜드 · 신천지 · 예원</div>
+  <div class="hero-desc">3박 4일 · 푸동 샹그릴라 → 래디슨 (푸시) · 와이탄 야경 · 디즈니랜드</div>
 </div>
 
 <div class="container">
 
+  <!-- ==================== PREP CHECKLIST ==================== -->
   <div class="prep-section">
-    <div class="prep-header">
-      <div class="prep-icon">✅</div>
-      <div>
-        <div class="prep-title">출발 전 준비 체크리스트</div>
-        <div class="prep-subtitle">여행 전 꼭 챙겨야 할 것들</div>
-      </div>
+    <div class="sec-header">
+      <div class="sec-icon gold">✅</div>
+      <div><div class="sec-title">출발 전 준비 체크리스트</div><div class="sec-subtitle">여행 전 꼭 챙겨야 할 것들</div></div>
     </div>
     <div class="prep-grid">
       <div class="prep-card">
@@ -232,11 +296,181 @@
         <div class="prep-item"><div class="prep-check"></div><div>목적지 <strong>중국어 주소</strong> 메모 (디디용)</div></div>
       </div>
     </div>
-    <div class="prep-note">
+    <div class="note-box">
       <strong>⚠️ 중요</strong> — 중국은 구글·카카오톡·인스타 등이 차단됩니다. <strong>VPN 포함 유심/eSIM</strong>을 꼭 준비하세요. 알리페이는 한국에서 미리 Tour Pass 설정 후 테스트해보는 게 좋아요!
     </div>
   </div>
 
+  <!-- ==================== BUDGET GUIDE ==================== -->
+  <div class="prep-section">
+    <div class="sec-header">
+      <div class="sec-icon green">💰</div>
+      <div><div class="sec-title">예상 비용 가이드</div><div class="sec-subtitle">주요 항목별 대략 예산 (1인 기준, 元 = 약 200원)</div></div>
+    </div>
+    <div class="budget-grid">
+      <div class="budget-item">
+        <div class="budget-emoji">🏰</div>
+        <div class="budget-label">디즈니 티켓</div>
+        <div class="budget-price">475~599元</div>
+        <div class="budget-sub">평일/주말 차이</div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-emoji">🦶</div>
+        <div class="budget-label">발마사지 1시간</div>
+        <div class="budget-price">150~200元</div>
+        <div class="budget-sub">도원향 기준</div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-emoji">💆</div>
+        <div class="budget-label">헤드스파</div>
+        <div class="budget-price">200~300元</div>
+        <div class="budget-sub">우캉루 근처</div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-emoji">🍜</div>
+        <div class="budget-label">식사 (1끼)</div>
+        <div class="budget-price">80~150元</div>
+        <div class="budget-sub">로컬~중급 식당</div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-emoji">🚕</div>
+        <div class="budget-label">디디 시내</div>
+        <div class="budget-price">20~50元</div>
+        <div class="budget-sub">구간별 상이</div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-emoji">🏰🚕</div>
+        <div class="budget-label">디디→디즈니</div>
+        <div class="budget-price">100~150元</div>
+        <div class="budget-sub">편도 약 40~60분</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHINESE CHEATSHEET ==================== -->
+  <div class="cheat-section">
+    <div class="sec-header">
+      <div class="sec-icon blue">🇨🇳</div>
+      <div><div class="sec-title">디디용 중국어 주소 치트시트</div><div class="sec-subtitle">복사 버튼 눌러서 디디에 바로 붙여넣기</div></div>
+    </div>
+    <div class="cheat-table">
+      <div class="cheat-row">
+        <span class="cheat-ko">🏨 샹그릴라 호텔</span>
+        <span class="cheat-zh">浦东香格里拉大酒店</span>
+        <button class="cheat-copy" onclick="copyText(this,'浦东香格里拉大酒店')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🏨 래디슨 호텔</span>
+        <span class="cheat-zh">上海新世界丽笙大酒店</span>
+        <button class="cheat-copy" onclick="copyText(this,'上海新世界丽笙大酒店')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🛍️ 정대광장몰</span>
+        <span class="cheat-zh">正大广场 陆家嘴</span>
+        <button class="cheat-copy" onclick="copyText(this,'正大广场 陆家嘴')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🗼 동방명주</span>
+        <span class="cheat-zh">东方明珠广播电视塔</span>
+        <button class="cheat-copy" onclick="copyText(this,'东方明珠广播电视塔')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🌃 와이탄</span>
+        <span class="cheat-zh">外滩</span>
+        <button class="cheat-copy" onclick="copyText(this,'外滩')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🏙️ 난징동루</span>
+        <span class="cheat-zh">南京东路步行街</span>
+        <button class="cheat-copy" onclick="copyText(this,'南京东路步行街')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🏘️ 신천지</span>
+        <span class="cheat-zh">新天地</span>
+        <button class="cheat-copy" onclick="copyText(this,'新天地')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🇰🇷 임시정부</span>
+        <span class="cheat-zh">大韩民国临时政府旧址 马当路304号</span>
+        <button class="cheat-copy" onclick="copyText(this,'大韩民国临时政府旧址 马当路304号')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🌳 우캉맨션</span>
+        <span class="cheat-zh">武康大楼 淮海中路1850号</span>
+        <button class="cheat-copy" onclick="copyText(this,'武康大楼 淮海中路1850号')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🎨 티엔즈팡</span>
+        <span class="cheat-zh">田子坊 泰康路210弄</span>
+        <button class="cheat-copy" onclick="copyText(this,'田子坊 泰康路210弄')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🏯 예원</span>
+        <span class="cheat-zh">豫园</span>
+        <button class="cheat-copy" onclick="copyText(this,'豫园')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🛒 허마선생</span>
+        <span class="cheat-zh">盒马鲜生</span>
+        <button class="cheat-copy" onclick="copyText(this,'盒马鲜生')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🏰 디즈니랜드</span>
+        <span class="cheat-zh">上海迪士尼乐园</span>
+        <button class="cheat-copy" onclick="copyText(this,'上海迪士尼乐园')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">🦶 도원향</span>
+        <span class="cheat-zh">桃源乡足浴</span>
+        <button class="cheat-copy" onclick="copyText(this,'桃源乡足浴')">복사</button>
+      </div>
+      <div class="cheat-row">
+        <span class="cheat-ko">✈️ 푸동공항</span>
+        <span class="cheat-zh">上海浦东国际机场</span>
+        <button class="cheat-copy" onclick="copyText(this,'上海浦东国际机场')">복사</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== EMERGENCY ==================== -->
+  <div class="emerg-section">
+    <div class="sec-header">
+      <div class="sec-icon pink">🆘</div>
+      <div><div class="sec-title">비상 연락처</div><div class="sec-subtitle">만약을 대비해 스크린샷 찍어두세요</div></div>
+    </div>
+    <div class="emerg-grid">
+      <div class="emerg-card">
+        <div class="emerg-icon">🇰🇷</div>
+        <div>
+          <div class="emerg-label">주상하이 한국총영사관</div>
+          <div class="emerg-value"><a href="tel:+862162952639">+86-21-6295-2639</a></div>
+        </div>
+      </div>
+      <div class="emerg-card">
+        <div class="emerg-icon">🚔</div>
+        <div>
+          <div class="emerg-label">중국 경찰</div>
+          <div class="emerg-value"><a href="tel:110">110</a></div>
+        </div>
+      </div>
+      <div class="emerg-card">
+        <div class="emerg-icon">🚑</div>
+        <div>
+          <div class="emerg-label">중국 응급 / 화재</div>
+          <div class="emerg-value"><a href="tel:120">120</a> (응급) · <a href="tel:119">119</a> (화재)</div>
+        </div>
+      </div>
+      <div class="emerg-card">
+        <div class="emerg-icon">📞</div>
+        <div>
+          <div class="emerg-label">영사콜센터 (24시간)</div>
+          <div class="emerg-value"><a href="tel:+8227335000">+82-2-3210-0404</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== DAY 1 ======================== -->
   <div class="day-section">
     <div class="day-header">
       <div class="day-badge"><span class="day-num">1</span><span class="day-label">DAY</span></div>
@@ -245,18 +479,21 @@
         <div class="day-subtitle">공항 → 호텔 → 정대광장몰 → 동방명주 → 페리 → 난징루 → 와이탄</div>
       </div>
     </div>
+    <div class="day-hotel">푸동 샹그릴라 상하이 (浦东香格里拉大酒店)</div>
+
     <div class="timeline">
       <div class="card">
         <div class="card-body">
           <div class="card-top">
             <div class="card-icon">✈️</div>
             <div class="card-info">
+              <div class="card-time">~14:00</div>
               <div class="card-name">상하이 도착 → 호텔 입성</div>
-              <div class="card-desc"><strong>디디(滴滴)</strong> 호출하여 호텔로 이동, 캐리어 보관</div>
+              <div class="card-desc"><strong>디디(滴滴)</strong> 호출 → <strong>푸동 샹그릴라</strong>로 이동, 캐리어 보관</div>
             </div>
           </div>
           <span class="tag tag-move">🚕 이동</span>
-          <span class="tag tag-tip">💡 디디 앱 미리 설치</span>
+          <span class="tag tag-hotel">🏨 샹그릴라 체크인</span>
         </div>
       </div>
 
@@ -265,8 +502,9 @@
           <div class="card-top">
             <div class="card-icon">🛍️</div>
             <div class="card-info">
+              <div class="card-time">~15:00</div>
               <div class="card-name">정대광장몰 (正大广场) <span class="card-name-en">Super Brand Mall</span></div>
-              <div class="card-desc"><strong>점도덕(点都德)</strong> 딤섬 식사 + 쇼핑<br>루자쭈이(陆家嘴) 핵심 상권, 동방명주 바로 인접</div>
+              <div class="card-desc"><strong>점도덕(点都德)</strong> 딤섬 식사 + 쇼핑<br>샹그릴라에서 도보 10분, 동방명주 바로 인접</div>
             </div>
           </div>
           <div class="map-link-group">
@@ -287,6 +525,7 @@
           <div class="card-top">
             <div class="card-icon">🗼</div>
             <div class="card-info">
+              <div class="card-time">~16:30</div>
               <div class="card-name">동방명주 낮 구경 <span class="card-name-en">Oriental Pearl Tower</span></div>
               <div class="card-desc">육교 위에서 동방명주 탑 + 루자쭈이 스카이라인 감상<br><strong>Tip:</strong> 금융센터·상하이타워와 함께 삼각뷰 촬영 포인트</div>
             </div>
@@ -304,6 +543,7 @@
           <div class="card-top">
             <div class="card-icon">⛴️</div>
             <div class="card-info">
+              <div class="card-time">~17:00</div>
               <div class="card-name">상하이 황푸강 페리</div>
               <div class="card-desc">푸동 → 푸시 도강 페리 <strong>2위안 (약 400원)</strong><br>황푸강 위에서 양쪽 스카이라인을 한눈에!</div>
             </div>
@@ -322,6 +562,7 @@
           <div class="card-top">
             <div class="card-icon">🏙️</div>
             <div class="card-info">
+              <div class="card-time">~17:30</div>
               <div class="card-name">난징시루 & 난징동루 <span class="card-name-en">Nanjing Road</span></div>
               <div class="card-desc">인민광장역(人民广场) 인접, 상하이 최대 보행자 거리<br>쇼핑·먹거리·거리 퍼포먼스</div>
             </div>
@@ -344,7 +585,8 @@
           <div class="card-top">
             <div class="card-icon">🌃</div>
             <div class="card-info">
-              <div class="card-name">와이탄 (外滩) — 7시 <span class="card-name-en">The Bund</span></div>
+              <div class="card-time">~19:00</div>
+              <div class="card-name">와이탄 (外滩) <span class="card-name-en">The Bund</span></div>
               <div class="card-desc"><strong>상하이 No.1 야경 스팟</strong><br>유럽풍 근대 건축물 + 푸동 스카이라인 조명이 황푸강에 반사</div>
             </div>
           </div>
@@ -362,38 +604,57 @@
           <div class="card-top">
             <div class="card-icon">🍽️</div>
             <div class="card-info">
-              <div class="card-name">저녁 식사 → 동방명주 야경 감상</div>
-              <div class="card-desc">와이탄 인근 레스토랑에서 식사 후<br><strong>동방명주 야간 조명</strong> 감상하며 첫째 날 마무리</div>
+              <div class="card-time">~20:00</div>
+              <div class="card-name">저녁 식사</div>
+              <div class="card-desc">와이탄 인근 레스토랑에서 식사</div>
             </div>
           </div>
           <span class="tag tag-food">🍽️ 식사</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-icon">🌙</div>
+            <div class="card-info">
+              <div class="card-time">~21:00</div>
+              <div class="card-name">동방명주 야경 감상 → 호텔 복귀</div>
+              <div class="card-desc">페리 or 택시로 푸동 복귀, <strong>동방명주 야간 조명</strong> 감상<br>샹그릴라까지 도보 귀환</div>
+            </div>
+          </div>
           <span class="tag tag-night">🌙 야경</span>
+          <span class="tag tag-hotel">🏨 샹그릴라 복귀</span>
         </div>
       </div>
     </div>
-    <div class="tip-box"><strong>💡 DAY 1 TIP</strong> — 와이탄 야경은 일몰 직후(18:30~19:00)가 베스트. 황푸강 페리는 알리페이 결제 가능. 디디는 목적지를 중국어로 저장해두면 편해요.</div>
+    <div class="tip-box"><strong>💡 DAY 1 TIP</strong> — 와이탄 야경은 일몰 직후(18:30~19:00)가 베스트. 황푸강 페리는 알리페이 결제 가능. 샹그릴라↔정대광장은 도보 10분이라 짐 맡기고 바로 출발 가능!</div>
   </div>
 
+  <!-- ======================== DAY 2 ======================== -->
   <div class="day-section">
     <div class="day-header">
       <div class="day-badge"><span class="day-num">2</span><span class="day-label">DAY</span></div>
       <div>
         <div class="day-title">신천지 · 우캉루 · 예원 풀코스</div>
-        <div class="day-subtitle">쇼핑 → 신천지 → 임시정부 → 우캉루 → 티엔즈팡 → 예원 → 마사지</div>
+        <div class="day-subtitle">호텔 이동 → 쇼핑 → 신천지 → 임시정부 → 우캉루 → 티엔즈팡 → 예원 → 마사지</div>
       </div>
     </div>
+    <div class="day-hotel">래디슨 호텔 (푸시, 新世界丽笙大酒店)</div>
+
     <div class="timeline">
       <div class="card">
         <div class="card-body">
           <div class="card-top">
             <div class="card-icon">🌅</div>
             <div class="card-info">
-              <div class="card-name">조식 → 택시로 호텔 이동</div>
-              <div class="card-desc">짐 맡기고 가볍게 출발</div>
+              <div class="card-time">~08:00</div>
+              <div class="card-name">조식 (샹그릴라) → 체크아웃</div>
+              <div class="card-desc">샹그릴라 조식 후 체크아웃<br>택시로 <strong>래디슨 호텔(푸시)</strong>로 이동, 짐 맡기기</div>
             </div>
           </div>
           <span class="tag tag-food">🥐 조식</span>
-          <span class="tag tag-move">🚕 이동</span>
+          <span class="tag tag-hotel">🏨 호텔 이동 (푸동→푸시)</span>
         </div>
       </div>
 
@@ -402,8 +663,9 @@
           <div class="card-top">
             <div class="card-icon">🛒</div>
             <div class="card-info">
+              <div class="card-time">~10:00</div>
               <div class="card-name">난징동루 쇼핑 <span class="card-name-en">Nanjing Road East</span></div>
-              <div class="card-desc">오전 한적할 때 쇼핑 타임</div>
+              <div class="card-desc">래디슨에서 도보 가능, 오전 한적할 때 쇼핑 타임</div>
             </div>
           </div>
           <div class="map-link-group">
@@ -423,6 +685,7 @@
           <div class="card-top">
             <div class="card-icon">🍜</div>
             <div class="card-info">
+              <div class="card-time">~12:00</div>
               <div class="card-name">신천지 점심 <span class="card-name-en">Xintiandi</span></div>
               <div class="card-desc">로컬 식당 or <strong>런허관(绿波廊)</strong> — 전통 상하이 요리<br>석고문(스쿠먼) 건축 골목 분위기</div>
             </div>
@@ -441,8 +704,9 @@
           <div class="card-top">
             <div class="card-icon">🇰🇷</div>
             <div class="card-info">
+              <div class="card-time">~13:30</div>
               <div class="card-name">대한민국 임시정부 유적지 <span class="card-name-en">Korean Provisional Government</span></div>
-              <div class="card-desc">신천지 바로 인접, <strong>마당루 302-304호</strong><br>한국인이라면 꼭 들러야 할 역사의 현장</div>
+              <div class="card-desc">신천지에서 도보 3분, <strong>마당루 302-304호</strong><br>한국인이라면 꼭 들러야 할 역사의 현장</div>
             </div>
           </div>
           <div class="map-link-group">
@@ -462,6 +726,7 @@
           <div class="card-top">
             <div class="card-icon">🌳</div>
             <div class="card-info">
+              <div class="card-time">~14:30</div>
               <div class="card-name">우캉루 & 우캉맨션 <span class="card-name-en">Wukang Road & Mansion</span></div>
               <div class="card-desc">프렌치 콘세션의 상징, <strong>플랫아이언 닮은 웨지형 건물</strong><br>플라타너스 가로수길 산책 + 카페 탐방</div>
             </div>
@@ -479,8 +744,9 @@
           <div class="card-top">
             <div class="card-icon">💆</div>
             <div class="card-info">
+              <div class="card-time">~15:30</div>
               <div class="card-name">헤드스파</div>
-              <div class="card-desc">우캉루 근처 헤드스파에서 잠시 힐링 타임</div>
+              <div class="card-desc">우캉루 근처 헤드스파에서 약 1시간 힐링<br><strong>예상:</strong> 200~300元</div>
             </div>
           </div>
           <span class="tag tag-relax">💆 휴식</span>
@@ -496,8 +762,9 @@
           <div class="card-top">
             <div class="card-icon">🎨</div>
             <div class="card-info">
+              <div class="card-time">~17:00</div>
               <div class="card-name">티엔즈팡 (田子坊) <span class="card-name-en">Tianzifang</span></div>
-              <div class="card-desc">좁은 골목 안 아트숍·카페·로컬 간식 천국<br>사진찍기 좋은 벽화 & 간판들</div>
+              <div class="card-desc">우캉루에서 택시 약 15분<br>좁은 골목 안 아트숍·카페·로컬 간식 천국</div>
             </div>
           </div>
           <div class="map-link-group">
@@ -518,8 +785,9 @@
           <div class="card-top">
             <div class="card-icon">🏯</div>
             <div class="card-info">
+              <div class="card-time">~18:30</div>
               <div class="card-name">예원 (豫园) <span class="card-name-en">Yu Garden</span></div>
-              <div class="card-desc">명대 정원 + 주변 <strong>예원상성(豫园商城)</strong> 전통 시장 거리<br>구곡교(九曲桥) 위 야경도 환상적</div>
+              <div class="card-desc">티엔즈팡에서 택시 10분<br>명대 정원 + <strong>예원상성(豫园商城)</strong> 전통 시장 + 구곡교 야경</div>
             </div>
           </div>
           <div class="map-link-group">
@@ -536,19 +804,35 @@
           <div class="card-top">
             <div class="card-icon">🍲</div>
             <div class="card-info">
-              <div class="card-name">저녁 식사 → 도원향 발마사지</div>
-              <div class="card-desc">하루 종일 걸은 발을 <strong>도원향(桃源乡)</strong>에서 회복<br>→ 호텔 복귀 후 배달 음식으로 마무리</div>
+              <div class="card-time">~20:00</div>
+              <div class="card-name">저녁 식사 (예원 근처)</div>
+              <div class="card-desc">예원상성 내 식당 or 근처 로컬 식당</div>
             </div>
           </div>
           <span class="tag tag-food">🍲 저녁</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-icon">🦶</div>
+            <div class="card-info">
+              <div class="card-time">~21:00</div>
+              <div class="card-name">도원향 발마사지 → 호텔 → 배달</div>
+              <div class="card-desc"><strong>도원향(桃源乡)</strong>에서 1시간 발마사지<br>호텔 복귀 후 배달 음식으로 하루 마무리</div>
+            </div>
+          </div>
           <span class="tag tag-relax">🦶 마사지</span>
           <span class="tag tag-food">🛵 배달</span>
+          <span class="tag tag-hotel">🏨 래디슨 복귀</span>
         </div>
       </div>
     </div>
-    <div class="tip-box"><strong>💡 DAY 2 TIP</strong> — 신천지→임시정부→우캉루는 도보 가능 거리. 예원은 월요일 휴무이니 요일 확인 필수! 도원향은 현금 + 알리페이 가능.</div>
+    <div class="tip-box"><strong>💡 DAY 2 TIP</strong> — 총 9스팟 풀코스! 신천지→임시정부→우캉루는 도보 연결. 우캉루→티엔즈팡→예원은 각 택시 10~15분씩. 예원은 <strong>월요일 휴무</strong>이니 요일 확인 필수!</div>
   </div>
 
+  <!-- ======================== DAY 3 ======================== -->
   <div class="day-section">
     <div class="day-header">
       <div class="day-badge"><span class="day-num">3</span><span class="day-label">DAY</span></div>
@@ -557,18 +841,35 @@
         <div class="day-subtitle">마트 → 호텔 → 디즈니랜드 → 마사지 → 야식</div>
       </div>
     </div>
+    <div class="day-hotel">래디슨 호텔 (푸시, 新世界丽笙大酒店)</div>
+
     <div class="timeline">
       <div class="card">
         <div class="card-body">
           <div class="card-top">
             <div class="card-icon">🛒</div>
             <div class="card-info">
+              <div class="card-time">~08:00</div>
               <div class="card-name">조식 → 따룬파마트 / 허마선생 <span class="card-name-en">Hema Fresh (盒马鲜生)</span></div>
               <div class="card-desc"><strong>허마선생(盒马鲜生)</strong> — 알리바바 운영 스마트 마트<br>해산물 즉석조리, 중국 간식·기념품 쇼핑</div>
             </div>
           </div>
           <span class="tag tag-food">🥐 조식</span>
           <span class="tag tag-shop">🛒 마트</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-icon">🏨</div>
+            <div class="card-info">
+              <div class="card-time">~10:00</div>
+              <div class="card-name">호텔 → 택시로 디즈니 출발</div>
+              <div class="card-desc">래디슨에서 디즈니까지 약 <strong>40~60분</strong> (100~150元)<br>오전 도착해야 트론 대기 짧음!</div>
+            </div>
+          </div>
+          <span class="tag tag-move">🚕 이동</span>
         </div>
       </div>
 
@@ -581,8 +882,13 @@
           <div class="card-top">
             <div class="card-icon">🏰</div>
             <div class="card-info">
+              <div class="card-time">~11:00 – 21:00</div>
               <div class="card-name">상하이 디즈니랜드 <span class="card-name-en">Shanghai Disneyland</span></div>
-              <div class="card-desc">택시로 이동 (약 40~60분)<br><strong>추천:</strong> 트론 라이트사이클, 캐리비안의 해적, 주토피아<br>퇴장 후 <strong>픽업 택시</strong>로 복귀</div>
+              <div class="card-desc">
+                <strong>추천 어트랙션:</strong> 트론 라이트사이클, 캐리비안의 해적, 주토피아<br>
+                <strong>저녁:</strong> 파크 내 식사 or 디즈니 빌리지<br>
+                퇴장 후 <strong>디디 픽업</strong>으로 복귀 (미리 예약!)
+              </div>
             </div>
           </div>
           <div class="map-link-group">
@@ -599,18 +905,21 @@
           <div class="card-top">
             <div class="card-icon">🦶</div>
             <div class="card-info">
+              <div class="card-time">~22:00</div>
               <div class="card-name">도원향 발마사지 → 야식</div>
               <div class="card-desc">디즈니에서 지친 다리를 <strong>도원향</strong>에서 리셋<br>야식으로 하루 마무리</div>
             </div>
           </div>
           <span class="tag tag-relax">🦶 마사지</span>
           <span class="tag tag-food">🌙 야식</span>
+          <span class="tag tag-hotel">🏨 래디슨 복귀</span>
         </div>
       </div>
     </div>
-    <div class="tip-box"><strong>💡 DAY 3 TIP</strong> — 디즈니 앱(上海迪士尼度假区) 미리 설치 → 대기시간 실시간 확인. 트론은 오전 일찍 타야 대기 짧음! 퇴장 시 디디 예약은 미리 잡아두세요.</div>
+    <div class="tip-box"><strong>💡 DAY 3 TIP</strong> — 디즈니 앱(上海迪士尼度假区) 필수! 대기시간 실시간 확인. 트론은 오전 일찍 타야 대기 짧음. 퇴장 시 <strong>디디 예약은 20분 전에</strong> 잡아두세요 — 퇴장 시간 몰리면 잡기 어려워요.</div>
   </div>
 
+  <!-- ======================== DAY 4 ======================== -->
   <div class="day-section">
     <div class="day-header">
       <div class="day-badge"><span class="day-num">4</span><span class="day-label">DAY</span></div>
@@ -619,17 +928,21 @@
         <div class="day-subtitle">조식 → 쇼핑 → 공항 이동</div>
       </div>
     </div>
+    <div class="day-hotel">래디슨 호텔 체크아웃 → 공항</div>
+
     <div class="timeline">
       <div class="card">
         <div class="card-body">
           <div class="card-top">
             <div class="card-icon">☀️</div>
             <div class="card-info">
+              <div class="card-time">~08:00</div>
               <div class="card-name">조식 → 체크아웃</div>
-              <div class="card-desc">짐 정리 후 체크아웃, 캐리어 맡기기</div>
+              <div class="card-desc">짐 정리 후 체크아웃, 프론트에 캐리어 맡기기</div>
             </div>
           </div>
           <span class="tag tag-food">🥐 조식</span>
+          <span class="tag tag-hotel">🏨 체크아웃</span>
         </div>
       </div>
 
@@ -638,8 +951,9 @@
           <div class="card-top">
             <div class="card-icon">🏬</div>
             <div class="card-info">
+              <div class="card-time">~09:30</div>
               <div class="card-name">신세계 백화점 or 난징동루 <span class="card-name-en">New World / Nanjing Road</span></div>
-              <div class="card-desc">마지막 쇼핑 & 기념품 구매<br>면세 한도 체크 후 알뜰 쇼핑</div>
+              <div class="card-desc">래디슨 바로 옆! 마지막 쇼핑 & 기념품 구매<br>면세 한도 체크 후 알뜰 쇼핑, 알리페이 잔액 소진</div>
             </div>
           </div>
           <div class="map-link-group">
@@ -655,15 +969,16 @@
           <div class="card-top">
             <div class="card-icon">✈️</div>
             <div class="card-info">
-              <div class="card-name">택시로 공항 이동 → 출국</div>
-              <div class="card-desc">디디 호출 → 푸동/홍차오 공항<br><strong>Tip:</strong> 출발 3시간 전 이동 시작 권장 (교통 체증 대비)</div>
+              <div class="card-time">~12:00</div>
+              <div class="card-name">호텔 짐 픽업 → 택시로 공항</div>
+              <div class="card-desc">디디 호출 → 푸동공항 (약 40~50분)<br><strong>출발 3시간 전 이동 권장</strong> (교통 체증 대비)</div>
             </div>
           </div>
           <span class="tag tag-move">✈️ 출국</span>
         </div>
       </div>
     </div>
-    <div class="tip-box"><strong>💡 DAY 4 TIP</strong> — 택시비 현금 정산 시 잔돈 미리 준비. 공항 면세점도 좋지만 시내 쇼핑이 가성비 우수. 위챗페이/알리페이 잔액 소진도 잊지 마세요!</div>
+    <div class="tip-box"><strong>💡 DAY 4 TIP</strong> — 래디슨이 난징동루·신세계 바로 옆이라 체크아웃 후 바로 쇼핑 가능! 위챗페이/알리페이 잔액 소진도 잊지 마세요. 공항 도착 후 면세점 쇼핑 시간도 확보하세요.</div>
   </div>
 
 </div>
@@ -673,6 +988,33 @@
   上海 · Shanghai · 상하이<br>
   즐거운 여행 되세요! 🇨🇳✨
 </div>
+
+<script>
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ 복사됨';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '복사';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ 복사됨';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '복사';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
 
 </body>
 </html>
